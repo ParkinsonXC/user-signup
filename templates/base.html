@@ -11,37 +11,56 @@
     <body>
         <h2>Signup</h2>
 
-        <form method="POST">
+        <form action="/welcome" method="POST">
             <table>
                 <tr>
                     <td><label for="username">Username</label></td>
                     <td>
                         <input name="username" type="text" value="" />
-                        <span class="error">That's not a valid username</span>
+                        {% if username|length < 3 %}
+                        <span class="error">That username is not long enough.</span>
+                        {% elif username|length > 20 %}
+                        <span class="error">That username is too long.</span>
+                        {% elif " " in username %}
+                        <span class="error">Username cannot contain spaces.</span>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td><label for="password">Password</label></td>
                     <td>
                         <input name="password" type="password" value="" />
-                        <span class="error">That's not a valid password</span>
+                        {% if password|length < 3 %}
+                        <span class="error">That password is not long enough.</span>
+                        {% elif password|length > 20 %}
+                        <span class="error">That password is too long.</span>
+                        {% elif " " in username %}
+                        <span class="error">Password cannot contain spaces.</span>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td><label for="verified_password">Re-enter Password</label></td>
                     <td>
                         <input name="verified_password" type="password" value="" />
+                        {% if password != verified_password %}
                         <span class="error">Passwords don't match</span>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td><label for="email">Email (optional)</label></td>
                     <td>
                         <input name="email" type="text" />
-                        <span class="error">Invalid email</span>
+                        {% if "@" not in email %}
+                        {% elif "." not in email %}
+                        {% elif email|length < 3 or email|length > 20 %}
+                        <span class="error">That email is not valid.</span>
+                        {% endif %}
                     </td>
                 </tr>
             </table>
+            <input type="submit" value="Submit"/>
         </form>
 
     </body>
