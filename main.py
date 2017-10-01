@@ -42,17 +42,19 @@ def validate_input():
     #PASSWORD CHECK
     if len(password) <= 3:
         password = ""
+        verified_password = ""
         password_error = "This password is too short."
         #return redirect("/?password_error=" + password_error)
 
     elif len(password) > 20:
         password = ""
+        verified_password = ""
         password_error = "This password is too long."
         #return redirect("/?password_error=" + password_error)
 
     elif ' ' in password:
         password = ""
-        verified_error = ""
+        verified_password = ""
         password_error = "Your password cannot have a space."
         #return redirect("/?password_error=" + password_error)
 
