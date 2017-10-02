@@ -69,12 +69,12 @@ def validate_input():
     if len(email) != 0:
 
         #EMAIL CHECK (OPTIONAL)
-        if email.count('@') != 1:
+        if email.count('@') != 1 or email.count('@') > 1:
             email = ""
             email_error = "Invalid email."
             #return redirect("/?email_error=" + email_error)
 
-        elif email.count('.') != 1:
+        elif email.count('.') != 1 or email.count('.') > 1:
             email = ""
             email_error = "Invalid email."
             #return redirect("/?email_error=" + email_error)
